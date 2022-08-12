@@ -68,6 +68,65 @@
         document.getElementById("pa").focus();
     }
 
+
+    function calculateHSI()
+    {
+        //access all input controls
+        var pa=document.getElementById("pa");
+        var r=document.getElementById("rate");
+        var t=document.getElementById("time");
+        var hsi=document.getElementById("hsi");
+
+        //we can access the value of any input element by value property
+        //value property always gives string value
+
+        //check all values are entered or not
+        if(pa.value==="")
+        {
+            alert("Please Enter Principal amount.");
+            pa.focus();
+            return;
+        }
+        
+        if(r.value==="")
+        {
+            alert("Please Enter Rate of interest.");
+            r.focus();
+            return;
+        }
+
+        if(t.value==="")
+        {
+            alert("Please Enter Time.");
+            t.focus();
+            return;
+        }
+
+        //read value from all input element, convert it into float and strore in variables
+        var pav=parseFloat(pa.value);
+        var rv=parseFloat(r.value);
+        var tv=parseFloat(t.value);
+        
+        //calculate si
+        var hsiv=(pav*rv*(tv*2))/100;
+        //set result in simple interest element
+        hsi.value=hsiv+"";
+
+    }
+
+    function resetHSI()
+    {
+        //set empty string in all input element
+        document.getElementById("pa").value="";
+        document.getElementById("rate").value="";
+        document.getElementById("time").value="";
+        document.getElementById("hsi").value="";
+
+        //set focus on principal amount element
+        document.getElementById("pa").focus();
+    }
+
+
     function printMCalendar()
     {
         //access all input controls
@@ -123,7 +182,7 @@
                                                         <div class="container-fluid">
                                                             <div class="row">
                                                                 <div class="col-sm-12 text-center">
-                                                                    <h1>Simple Interest Calculator</h1>
+                                                                    <h1>Simple  Interest Yearly Calculator</h1>
                                                                 </div>
                                                             </div>
                                                             
@@ -159,9 +218,56 @@
                                                                 <button type="button" class="btn btn-primary" onclick="resetSI()">Reset</button>
                                                             </div>
                                                         </div>
-                                                
-                                                    
+                                                        
+                                                        <h2 class="accordion-header" id="headingtwoOne">
+                                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsetwoOne" aria-expanded="true" aria-controls="collapsetwoOne">
+                                                                <div class="container-fluid">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-12 text-center">
+                                                                            <h1>Simple  Interest Half Yearly Calculator</h1>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                            </button>
+                                                        </h2>
+                                                        <div id="collapsetwoOne" class="accordion-collapse collapse " aria-labelledby="headingtwoOne" data-bs-parent="#accordionExample">
+                                                            <div class="accordion-body">
+
+
+                                                                <div class="row">
+                                                                    <div class="col-sm-3 text-center">
+                                                                        <label>Principal Amount</label><br/>
+                                                                        <input type="number" id="pa" class="form-control" placeholder="Principal Amount"/>                
+                                                                    </div>
+                                                                    <div class="col-sm-3 text-center">
+                                                                        <label>Rate</label><br/>
+                                                                        <input type="number" id="rate" class="form-control" placeholder="Rate"/>
+                                                                    </div>
+                                                                    <div class="col-sm-3 text-center">
+                                                                        <label>Time</label><br/>
+                                                                        <input type="number" id="time" class="form-control" placeholder="Time"/>
+                                                                    </div>
+                                                                    <div class="col-sm-3 text-center">
+                                                                        <label>Simple Interest</label><br/>
+                                                                        <input type="number" id="hsi" class="form-control" readonly placeholder="Simple Interest"/>
+                                                                    </div>
+                                                                </div>
+                                                        
+                                                                <div class="row">
+                                                                    <div class="col-sm-12 text-center">
+                                                                        <br/>
+                                                                        <button type="button" class="btn btn-success" onclick="calculateHSI();">Calculate</button>
+                                                                        <button type="button" class="btn btn-primary" onclick="resetHSI()">Reset</button>
+                                                                    </div>
+                                                                </div>
+
+
+
+
                                                     </div>
+
+
+
                                                 
                             </div>
                         </div> 

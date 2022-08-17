@@ -72,43 +72,43 @@
     function calculateHSI()
     {
         //access all input controls
-        var pa=document.getElementById("pa");
-        var r=document.getElementById("rate");
-        var t=document.getElementById("time");
+        var hpa=document.getElementById("hpa");
+        var hr=document.getElementById("hrate");
+        var ht=document.getElementById("htime");
         var hsi=document.getElementById("hsi");
 
         //we can access the value of any input element by value property
         //value property always gives string value
 
         //check all values are entered or not
-        if(pa.value==="")
+        if(hpa.value==="")
         {
             alert("Please Enter Principal amount.");
-            pa.focus();
+            hpa.focus();
             return;
         }
         
-        if(r.value==="")
+        if(hr.value==="")
         {
             alert("Please Enter Rate of interest.");
-            r.focus();
+            hr.focus();
             return;
         }
 
-        if(t.value==="")
+        if(ht.value==="")
         {
             alert("Please Enter Time.");
-            t.focus();
+            ht.focus();
             return;
         }
 
         //read value from all input element, convert it into float and strore in variables
-        var pav=parseFloat(pa.value);
-        var rv=parseFloat(r.value);
-        var tv=parseFloat(t.value);
+        var hpav=parseFloat(hpa.value);
+        var hrv=parseFloat(hr.value);
+        var htv=parseFloat(ht.value);
         
         //calculate si
-        var hsiv=(pav*rv*(tv*2))/100;
+        var hsiv=(hpav*hrv*(htv*2))/100;
         //set result in simple interest element
         hsi.value=hsiv+"";
 
@@ -117,13 +117,13 @@
     function resetHSI()
     {
         //set empty string in all input element
-        document.getElementById("pa").value="";
-        document.getElementById("rate").value="";
-        document.getElementById("time").value="";
+        document.getElementById("hpa").value="";
+        document.getElementById("hrate").value="";
+        document.getElementById("htime").value="";
         document.getElementById("hsi").value="";
 
         //set focus on principal amount element
-        document.getElementById("pa").focus();
+        document.getElementById("hpa").focus();
     }
 
 
@@ -141,6 +141,67 @@
         var i=document.getElementById("i");
         var j=document.getElementById("j");
         var TDM=document.getElementById("TDM");
+
+        //Check all value are entered or not
+        if("m.value===")
+        {
+            alert("Plese Entered month")
+            m.focus();
+            return;
+        }
+        if("y.value===")
+        {
+            alert("Plese Entered year")
+            y.focus();
+            return;
+        }
+        
+        //read value from all input element
+        {
+            var m=(m.value);
+            var y=(y.value);
+        }
+
+        //find the week day of 1st day of given month and year
+
+        d=1;
+
+        d1=d;
+        m1=m;
+        y1=y;
+
+        if(m1<3)
+        {
+            d1+=y1;
+            y1-=1;
+        }
+        else
+        {
+            d1+=y1-2;
+        }
+        WDN=(23*m1/9+d1+4+y1/4-y1/100+y1/400)%7;
+
+        //Find total day in given month
+
+        if(m===2)
+        {
+            if(y%4===0&&y%100!==0||y%400===0)
+            TDM=29;
+            else
+            TDM=28;
+
+        }
+        else if (m===4||m===6||m===9||m===11)
+        TDM=30;
+        else
+        TDM=31;
+
+
+        // now fill array from 1 to totalDaysInMonth
+        // Find the starting element
+        for(i=weekDayNumber,j=1;j<=totalDayInMonth;i+=1,j+=1)calendar[i]=j;
+
+        //print calendar
 
     }
 
@@ -164,7 +225,7 @@
                     
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-sm-12 text-center">
@@ -177,8 +238,8 @@
                                         <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
                                                 
-                                                <h2 class="accordion-header" id="headingtwo">
-                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
+                                                <h2 class="accordion-header" id="headingt2">
+                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
                                                         <div class="container-fluid">
                                                             <div class="row">
                                                                 <div class="col-sm-12 text-center">
@@ -188,7 +249,7 @@
                                                             
                                                     </button>
                                                 </h2>
-                                                <div id="collapsetwo" class="accordion-collapse collapse " aria-labelledby="headingtwo" data-bs-parent="#accordionExample">
+                                                <div id="collapse2" class="accordion-collapse collapse " aria-labelledby="heading2" data-bs-parent="#accordionExample">
                                                     <div class="accordion-body">
 
 
@@ -237,15 +298,15 @@
                                                                 <div class="row">
                                                                     <div class="col-sm-3 text-center">
                                                                         <label>Principal Amount</label><br/>
-                                                                        <input type="number" id="pa" class="form-control" placeholder="Principal Amount"/>                
+                                                                        <input type="number" id="hpa" class="form-control" placeholder="Principal Amount"/>                
                                                                     </div>
                                                                     <div class="col-sm-3 text-center">
                                                                         <label>Rate</label><br/>
-                                                                        <input type="number" id="rate" class="form-control" placeholder="Rate"/>
+                                                                        <input type="number" id="hrate" class="form-control" placeholder="Rate"/>
                                                                     </div>
                                                                     <div class="col-sm-3 text-center">
                                                                         <label>Time</label><br/>
-                                                                        <input type="number" id="time" class="form-control" placeholder="Time"/>
+                                                                        <input type="number" id="htime" class="form-control" placeholder="Time"/>
                                                                     </div>
                                                                     <div class="col-sm-3 text-center">
                                                                         <label>Simple Interest</label><br/>
@@ -257,22 +318,24 @@
                                                                     <div class="col-sm-12 text-center">
                                                                         <br/>
                                                                         <button type="button" class="btn btn-success" onclick="calculateHSI();">Calculate</button>
-                                                                        <button type="button" class="btn btn-primary" onclick="resetHSI()">Reset</button>
+                                                                        <button type="button" class="btn btn-primary" onclick="resetHSI();">Reset</button>
                                                                     </div>
                                                                 </div>
-
-
-
-
-                                                    </div>
-
-
-
-                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div> 
-                   </div>
-
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+               <div class="accordion" id="accordionExample">            
 
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="heading2">
@@ -324,16 +387,12 @@
                             </div> 
                             
                         </div>
-                    </div> 
-
-                </div>
-
+                    </div>
                 </div>
             </div>
         </div>
-    </div>            
-
-
+    </div>
+</div>
     
 
 

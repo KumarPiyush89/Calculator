@@ -20,9 +20,9 @@ body
     margin-left: 100px;
 }
 p
-{   text-align: center;
+{   /*text-align: center;*/
     font-size: 50px;
-    font-weight: 600;
+    font-weight: 400;
     width: 30%;
     margin-left: 70px;
 }
